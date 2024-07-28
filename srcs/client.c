@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alibaba <alibaba@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pbailly <pbailly@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:50:00 by pbailly           #+#    #+#             */
-/*   Updated: 2024/07/27 21:24:17 by alibaba          ###   ########.fr       */
+/*   Updated: 2024/07/28 10:26:38 by pbailly          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include <signal.h>
 
-volatile sig_atomic_t	g_acknowledged = 0;
+int			g_signal_received = 0;
 
 static void	ack_handler(int signum)
 {
 	if (signum == SIGUSR1)
-		g_acknowledged = 1;
+		g_signal_received = 1;
 }
 
 static void	ft_send_bits(int pid, char i)
@@ -29,13 +29,13 @@ static void	ft_send_bits(int pid, char i)
 	bit = 0;
 	while (bit < 8)
 	{
-		g_acknowledged = 0;
+		g_signal_received = 0;
 		if ((i & (0x01 << bit)) != 0)
 			kill(pid, SIGUSR1);
 		else
 			kill(pid, SIGUSR2);
 		timeout = 0;
-		while (!g_acknowledged)
+		while (!g_signal_received)
 		{
 			usleep(50);
 			timeout++;
