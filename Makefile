@@ -31,12 +31,12 @@ OBJ_S		=	$(SRC_S:.c=.o)
 
 all: $(NAME) $(NAMESERV)
 
-lib:
+$(LIBFT_LIB):
 	@echo "\033[0;33mCOMPILING $(LIBFT_PATH)\n"
 	@make -sC $(LIBFT_PATH)
 	@echo "\033[1;32mlibft.a created\n"
 
-$(NAME): $(LIBFT_LIB) $(OBJ)
+$(NAME): $(OBJ) $(LIBFT_LIB)
 	@echo "\033[0;33m\nCOMPILING $(NAME)...\n"
 	@$(CC) $(OBJ) $(LIBFT_LIB) -o $(NAME)
 	@echo "\033[1;32m./$(NAME) created\n"
@@ -66,4 +66,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re lib
