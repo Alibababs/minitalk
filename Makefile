@@ -36,12 +36,12 @@ lib:
 	@make -sC $(LIBFT_PATH)
 	@echo "\033[1;32mlibft.a created\n"
 
-$(NAME): lib $(OBJ)
+$(NAME): $(LIBFT_LIB) $(OBJ)
 	@echo "\033[0;33m\nCOMPILING $(NAME)...\n"
 	@$(CC) $(OBJ) $(LIBFT_LIB) -o $(NAME)
 	@echo "\033[1;32m./$(NAME) created\n"
 
-$(NAMESERV): lib $(OBJ_S)
+$(NAMESERV): $(LIBFT_LIB) $(OBJ_S)
 	@echo "\033[0;33m\nCOMPILING $(NAMESERV)...\n"
 	@$(CC) $(OBJ_S) $(LIBFT_LIB) -o $(NAMESERV)
 	@echo "\033[1;32m./$(NAMESERV) created\n"
