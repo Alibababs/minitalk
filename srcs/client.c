@@ -6,7 +6,7 @@
 /*   By: pbailly <pbailly@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:50:00 by pbailly           #+#    #+#             */
-/*   Updated: 2024/07/28 10:26:38 by pbailly          ###   ########.fr       */
+/*   Updated: 2024/08/30 22:36:59 by pbailly          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,15 @@ int	main(int argc, char **argv)
 	if (argc == 3)
 	{
 		pid = ft_atoi(argv[1]);
-		signal(SIGUSR1, ack_handler);
-		signal(SIGUSR2, ack_handler);
-		i = 0;
-		while (argv[2][i])
+		if (pid == -1)
 		{
-			ft_send_bits(pid, argv[2][i]);
-			i++;
+			ft_printf("Error\nAre you crazy ?\n");
+			exit(1);
 		}
+		signal(SIGUSR1, ack_handler);
+		i = -1;
+		while (argv[2][++i])
+			ft_send_bits(pid, argv[2][i]);
 		ft_send_bits(pid, '\n');
 		ft_printf("Message sent\n");
 	}
