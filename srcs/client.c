@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pbailly <pbailly@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alibaba <alibaba@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 15:50:00 by pbailly           #+#    #+#             */
-/*   Updated: 2024/08/30 22:36:59 by pbailly          ###   ########.fr       */
+/*   Updated: 2024/09/04 06:00:10 by alibaba          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	main(int argc, char **argv)
 	if (argc == 3)
 	{
 		pid = ft_atoi(argv[1]);
-		if (pid == -1)
+		if (pid <= 0)
 		{
-			ft_printf("Error\nAre you crazy ?\n");
+			ft_printf("Error\n");
 			exit(1);
 		}
 		signal(SIGUSR1, ack_handler);

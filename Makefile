@@ -2,7 +2,7 @@ NAME		=	client
 
 NAMESERV	=	server
 
-CC			=	gcc
+CC			=	cc
 
 FLAG		=	-Wall -Wextra -Werror -g3
 
